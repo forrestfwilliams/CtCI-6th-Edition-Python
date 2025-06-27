@@ -3,6 +3,8 @@ import string
 import unittest
 from collections import Counter
 
+from s04_palindrome_permutation import is_palindrome_forrest
+
 
 def clean_phrase(phrase):
     return [c for c in phrase.lower() if c in string.ascii_lowercase]
@@ -10,7 +12,7 @@ def clean_phrase(phrase):
 
 def is_palindrome_permutation(phrase):
     """checks if a string is a permutation of a palindrome"""
-    table = [0 for _ in range(ord("z") - ord("a") + 1)]
+    table = [0 for _ in range(ord('z') - ord('a') + 1)]
     countodd = 0
     for c in phrase:
         x = char_number(c)
@@ -25,10 +27,10 @@ def is_palindrome_permutation(phrase):
 
 
 def char_number(c):
-    a = ord("a")
-    z = ord("z")
-    upper_a = ord("A")
-    upper_z = ord("Z")
+    a = ord('a')
+    z = ord('z')
+    upper_a = ord('A')
+    upper_z = ord('Z')
     val = ord(c)
 
     if a <= val <= z:
@@ -72,26 +74,27 @@ def is_palindrome_permutation_pythonic(phrase):
 
 class Test(unittest.TestCase):
     test_cases = [
-        ("aba", True),
-        ("aab", True),
-        ("abba", True),
-        ("aabb", True),
-        ("a-bba", True),
-        ("a-bba!", True),
-        ("Tact Coa", True),
-        ("jhsabckuj ahjsbckj", True),
-        ("Able was I ere I saw Elba", True),
-        ("So patient a nurse to nurse a patient so", False),
-        ("Random Words", False),
-        ("Not a Palindrome", False),
-        ("no x in nixon", True),
-        ("azAZ", True),
+        ('aba', True),
+        ('aab', True),
+        ('abba', True),
+        ('aabb', True),
+        ('a-bba', True),
+        ('a-bba!', True),
+        ('Tact Coa', True),
+        ('jhsabckuj ahjsbckj', True),
+        ('Able was I ere I saw Elba', True),
+        ('So patient a nurse to nurse a patient so', False),
+        ('Random Words', False),
+        ('Not a Palindrome', False),
+        ('no x in nixon', True),
+        ('azAZ', True),
     ]
     testable_functions = [
         is_palindrome_permutation,
         is_palindrome_bit_vector,
         is_palindrome_permutation_pythonic,
         is_palindrome_bit_vector2,
+        is_palindrome_forrest,
     ]
 
     def test_pal_perm(self):
@@ -100,5 +103,5 @@ class Test(unittest.TestCase):
                 assert f(test_string) == expected
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
